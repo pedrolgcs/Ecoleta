@@ -21,6 +21,7 @@
   },
   "plugins": ["@typescript-eslint", "prettier"],
   "rules": {
+    "import/prefer-default-export": "off",
     "no-console": "off",
     "class-methods-use-this": "off",
     "no-useless-constructor": "off",
@@ -32,9 +33,13 @@
     ],
     "@typescript-eslint/camelcase": "off",
     "prettier/prettier": "error",
-    "import/extensions": ["error", "ignorePackages", {
-      "ts": "never"
-    }],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never"
+      }
+    ],
     "@typescript-eslint/interface-name-prefix": [
       "error",
       {
