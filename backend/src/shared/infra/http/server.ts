@@ -1,25 +1,29 @@
-import path from 'path';
+import 'reflect-metadata';
+
 import express, { json, Request, Response, NextFunction } from 'express';
+import path from 'path';
 import cors from 'cors';
 import 'express-async-errors';
 
-import AppError from './utils/errors/AppError';
+import AppError from '@shared/errors/AppError';
 
 import routes from './routes';
 
+import '@shared/infra/typeorm';
+import '@shared/container';
+
 const app = express();
 
-// Middlewares
-app.use(json());
 app.use(cors());
+app.use(json());
+
 app.use('/uploads', express.static(path.resolve(__dirname, '..', 'uploads')));
 
-// Routes
 app.use(routes);
 
-app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
+app.use((err: Error, req: Request, res: Response, _: NextFunction) => {
   if (err instanceof AppError) {
-    return response.status(err.statusCode).json({
+    return res.status(err.statusCode).json({
       status: 'error',
       message: err.message,
     });
@@ -27,12 +31,10 @@ app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
 
   console.error(err);
 
-  return response.status(500).json({
+  return res.status(500).json({
     status: 'error',
     message: 'Internal server Error',
   });
 });
 
-app.listen(3333, () => {
-  console.log('🚀 server started on port 3333');
-});
+app.listen(3333, () => console.log('🚀 => server running in: localhost:3333'));
