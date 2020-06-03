@@ -1,9 +1,12 @@
-import { Router, Request, Response } from 'express';
+import { Router } from 'express';
+
+// Routes
+import itemsRouter from './items.routes';
+import pointsRouter from './points.routes';
 
 const routes = Router();
 
-routes.get('/', (request: Request, response: Response) =>
-  response.json({ message: 'Hello Rocket' }),
-);
+routes.use('/items', itemsRouter);
+routes.use('/points', pointsRouter);
 
 export default routes;
