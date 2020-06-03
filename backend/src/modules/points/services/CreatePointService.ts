@@ -14,8 +14,8 @@ interface IRequest {
   name: string;
   email: string;
   whatsapp: string;
-  latitude?: string;
-  longitude?: string;
+  latitude: number;
+  longitude: number;
   city: string;
   uf: string;
 }
@@ -27,8 +27,8 @@ class CreatePointService {
     private pointsRepository: IPointsRepository,
   ) {}
 
-  public async execute(data: IRequest): Promise<Point> {
-    const point = await this.pointsRepository.create(data);
+  public async execute(pointData: IRequest): Promise<Point> {
+    const point = await this.pointsRepository.create(pointData);
 
     return point;
   }

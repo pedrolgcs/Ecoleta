@@ -3,8 +3,11 @@ export default interface ICreatePointDTO {
   name: string;
   email: string;
   whatsapp: string;
-  latitude?: number;
-  longitude?: number;
+  latitude: number;
+  longitude: number;
+  location: {
+    [key: string]: number;
+  };
   city: string;
   uf: string;
 }

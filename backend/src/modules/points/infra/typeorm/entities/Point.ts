@@ -10,6 +10,10 @@ import {
 
 import Item from '@modules/items/infra/typeorm/entities/Item';
 
+interface IPoint {
+  [key: string]: number;
+}
+
 @Entity('points')
 class Point {
   @PrimaryGeneratedColumn('uuid')
@@ -25,13 +29,16 @@ class Point {
   email: string;
 
   @Column()
-  whatsapp: number;
+  whatsapp: string;
 
   @Column('float8')
   latitude: number;
 
   @Column('float8')
   longitude: number;
+
+  @Column('point')
+  location: object;
 
   @Column()
   city: string;

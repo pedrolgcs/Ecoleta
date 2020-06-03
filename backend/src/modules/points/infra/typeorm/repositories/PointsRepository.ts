@@ -14,9 +14,15 @@ class PointsRepository implements IPointsRepository {
   }
 
   public async create(pointData: ICreatePointDTO): Promise<Point> {
+    console.log(pointData);
     const point = await this.ormRepository.create(pointData);
     await this.ormRepository.save(point);
     return point;
+  }
+
+  public async listAll(): Promise<Point[]> {
+    const points = await this.ormRepository.find();
+    return points;
   }
 }
 

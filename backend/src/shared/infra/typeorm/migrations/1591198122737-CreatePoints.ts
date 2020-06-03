@@ -36,11 +36,14 @@ export default class CreatePoints1591198122737 implements MigrationInterface {
           {
             name: 'latitude',
             type: 'float',
-            isNullable: true,
           },
           {
             name: 'longitude',
             type: 'float',
+          },
+          {
+            name: 'location',
+            type: 'point',
             isNullable: true,
           },
           {
